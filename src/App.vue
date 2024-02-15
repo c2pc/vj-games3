@@ -1,21 +1,35 @@
 <script setup lang="ts">
-import {ref, watch} from "vue";
+import {Ref, ref, watch} from "vue";
 import Ru from "./components/ru.vue";
 import En from "./components/en.vue";
 import Bg from "./components/bg.vue";
+import ElectraRu from "./assets/Electra - TECHNIC[RU].wav";
+import ElectraEng from "./assets/Electra - TECHNIC [ENG].wav";
 
 const selected = ref(0);
+const audio:Ref<HTMLAudioElement | undefined> = ref();
 
 watch(() => selected.value, (id: typeof selected.value) => {
+  if (audio.value){
+    audio.value?.pause()
+    audio.value = undefined
+  }
+
   switch (id) {
     case 1: {
       console.log("Нажата кнопка 1")
+      audio.value = new Audio(ElectraRu)
       break;
     }
     case 2: {
       console.log("Нажата кнопка 2")
+      audio.value = new Audio(ElectraEng)
       break;
     }
+  }
+
+  if (audio.value){
+    audio.value?.play()
   }
 })
 
