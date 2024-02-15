@@ -5,32 +5,28 @@ import Ru from "./components/ru.vue";
 import En from "./components/en.vue";
 import Bg from "./components/bg.vue";
 import ElectraRu from "./assets/Electra - TECHNIC[RU].wav";
-import ElectraEng from "./assets/Electra - TECHNIC [ENG].wav";
+import ElectraEn from "./assets/Electra - TECHNIC [ENG].wav";
 
 const selected = ref(0);
-const audio:Ref<HTMLAudioElement | undefined> = ref();
+const audio:Ref<HTMLAudioElement[]> = ref([new Audio(ElectraRu), new Audio(ElectraEn)]);
 
 watch(() => selected.value, (id: typeof selected.value) => {
-  if (audio.value){
-    audio.value?.pause()
-    audio.value = undefined
-  }
+  audio.value.forEach(a=>{
+    a.pause()
+    a.currentTime = 0
+  })
 
   switch (id) {
     case 1: {
       console.log("Нажата кнопка 1")
-      audio.value = new Audio(ElectraRu)
+      audio.value[0].play()
       break;
     }
     case 2: {
       console.log("Нажата кнопка 2")
-      audio.value = new Audio(ElectraEng)
+      audio.value[1].play()
       break;
     }
-  }
-
-  if (audio.value){
-    audio.value?.play()
   }
 })
 
