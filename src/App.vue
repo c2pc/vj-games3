@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {ref, watch} from "vue";
+import {onMounted, ref, watch} from "vue";
 import type {Ref} from "vue";
 import Ru from "./components/ru.vue";
 import En from "./components/en.vue";
@@ -9,6 +9,12 @@ import ElectraEn from "./assets/Electra - TECHNIC [ENG].wav";
 
 const selected = ref(0);
 const audio:Ref<HTMLAudioElement[]> = ref([new Audio(ElectraRu), new Audio(ElectraEn)]);
+
+onMounted(()=>{
+  audio.value.forEach(a=>{
+    a.onended = ()=>onClickBlock(0)
+  })
+})
 
 watch(() => selected.value, (id: typeof selected.value) => {
   audio.value.forEach(a=>{
