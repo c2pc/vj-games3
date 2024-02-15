@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import {Ref, ref, watch} from "vue";
+import {ref, watch} from "vue";
+import type {Ref} from "vue";
 import Ru from "./components/ru.vue";
 import En from "./components/en.vue";
 import Bg from "./components/bg.vue";
