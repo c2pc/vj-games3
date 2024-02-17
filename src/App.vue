@@ -2,8 +2,8 @@
 import { onMounted, ref, watch } from "vue";
 import axios from "axios";
 import Uznai from "./components/uznai.vue";
-import Ru from "./components/ru.vue";
-import En from "./components/en.vue";
+import About from "./components/about.vue";
+import Create from "./components/create.vue";
 import Bg from "./components/bg.vue";
 import ElectraRu from "./assets/Electra - TECHNIC[RU].wav";
 import ElectraEn from "./assets/Electra - TECHNIC [ENG].wav";
@@ -80,11 +80,11 @@ document.addEventListener('contextmenu', event => event.preventDefault());
       </div>
       <div class="block" :class="selected == 2 ? 'selected' : ''" @click.stop="onClickBlock(2)">
         <Bg class="bg"/>
-        <Ru class="text"/>
+        <About class="text"/>
       </div>
       <div class="block" :class="selected == 3 ? 'selected' : ''" @click.stop="onClickBlock(3)">
         <Bg class="bg"/>
-        <En class="text"/>
+        <Create class="text"/>
       </div>
     </div>
   </div>
